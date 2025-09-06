@@ -1,0 +1,11 @@
+[package]
+name = "godot_rust_hello_world"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+godot = "0.3.5"
+rust_engine_frame = { path = "../rust_engine_frame" }
+
+[lib]
+crate-type = ["cdylib"]  # Compile this crate to a dynamic C library.
