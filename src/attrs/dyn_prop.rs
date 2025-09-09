@@ -4,19 +4,20 @@ use godot::prelude::*;
 use rust_engine_frame::attrs::dyn_prop::DynProp as Inner;
 
 use crate::adapter::fixed_name_wrapper::FixedNameWrapper;
-use crate::attrs::dyn_prop_dur_effect::DynPropDurEffect;
-use crate::attrs::dyn_prop_inst_effect::DynPropInstEffect;
-use crate::attrs::dyn_prop_period_effect::DynPropPeriodEffect;
+use crate::attrs::dyn_attr_effect::ExAttrEffect;
+use crate::attrs::dyn_prop_dur_effect::ExPropDurEffect;
+use crate::attrs::dyn_prop_inst_effect::ExPropInstEffect;
+use crate::attrs::dyn_prop_period_effect::ExPropPeriodEffect;
 
 #[derive(GodotClass)]
 #[class(init, base=RefCounted)]
-pub struct DynProp {
+pub struct ExProp {
     pub base: Base<RefCounted>,
     pub inner: Inner<FixedNameWrapper>,
 }
 
 #[godot_api]
-impl DynProp {
+impl ExProp {
     #[func]
     fn create(v: f64, the_max: f64, the_min: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
@@ -49,7 +50,7 @@ impl DynProp {
     }
 
     #[func]
-    pub fn use_inst_effect(&mut self, e: Gd<DynPropInstEffect>) -> f64 {
+    pub fn use_inst_effect(&mut self, e: Gd<ExPropInstEffect>) -> f64 {
         self.inner.use_inst_effect(e.bind().inner.clone())
     }
 
@@ -59,7 +60,7 @@ impl DynProp {
     }
 
     #[func]
-    pub fn put_dur_effect(&mut self, e: Gd<DynPropDurEffect>) {
+    pub fn put_dur_effect(&mut self, e: Gd<ExPropDurEffect>) {
         self.inner.put_dur_effect(e.bind().inner.clone());
     }
 
@@ -69,7 +70,45 @@ impl DynProp {
     }
 
     #[func]
-    pub fn do_put_dur_effect(&mut self, e: Gd<DynPropDurEffect>) {
+    pub fn get_max_dur_effect_names(&self) -> Array<StringName> {
+        self.inner
+            .get_max_dur_effect_names()
+            .into_iter()
+            .map(|s| s.0)
+            .collect()
+    }
+
+    #[func]
+    pub fn get_max_dur_effect_by_name(&self, s: StringName) -> Option<Gd<ExAttrEffect>> {
+        if let Some(eff) = self.inner.get_max_dur_effect_by_name(&FixedNameWrapper(s)) {
+            let outer = Gd::from_init_fn(|base| ExAttrEffect { base, inner: eff });
+            Some(outer)
+        } else {
+            None
+        }
+    }
+
+    #[func]
+    pub fn get_min_dur_effect_names(&self) -> Array<StringName> {
+        self.inner
+            .get_min_dur_effect_names()
+            .into_iter()
+            .map(|s| s.0)
+            .collect()
+    }
+
+    #[func]
+    pub fn get_min_dur_effect_by_name(&self, s: StringName) -> Option<Gd<ExAttrEffect>> {
+        if let Some(eff) = self.inner.get_min_dur_effect_by_name(&FixedNameWrapper(s)) {
+            let outer = Gd::from_init_fn(|base| ExAttrEffect { base, inner: eff });
+            Some(outer)
+        } else {
+            None
+        }
+    }
+
+    #[func]
+    pub fn do_put_dur_effect(&mut self, e: Gd<ExPropDurEffect>) {
         self.inner.do_put_dur_effect(e.bind().inner.clone());
     }
 
@@ -79,7 +118,7 @@ impl DynProp {
     }
 
     #[func]
-    pub fn put_period_effect(&mut self, e: Gd<DynPropPeriodEffect>) {
+    pub fn put_period_effect(&mut self, e: Gd<ExPropPeriodEffect>) {
         self.inner.put_period_effect(e.bind().inner.clone());
     }
 
@@ -89,8 +128,27 @@ impl DynProp {
     }
 
     #[func]
-    pub fn restart_period_effect(&mut self, e: Gd<DynPropPeriodEffect>) {
-        self.inner.restart_period_effect(&e.bind().inner.clone());
+    pub fn restart_period_effect(&mut self, e: Gd<ExPropPeriodEffect>) {
+        self.inner.restart_period_effect(&e.bind().inner);
+    }
+
+    #[func]
+    pub fn get_period_effect_names(&self) -> Array<StringName> {
+        self.inner
+            .get_period_effect_names()
+            .into_iter()
+            .map(|s| s.0)
+            .collect()
+    }
+
+    #[func]
+    pub fn get_period_effect_by_name(&self, s: StringName) -> Option<Gd<ExPropPeriodEffect>> {
+        if let Some(eff) = self.inner.get_period_effect_by_name(&FixedNameWrapper(s)) {
+            let outer = Gd::from_init_fn(|base| ExPropPeriodEffect { base, inner: eff });
+            Some(outer)
+        } else {
+            None
+        }
     }
 
     #[func]

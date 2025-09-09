@@ -9,13 +9,13 @@ use crate::adapter::fixed_name_wrapper::FixedNameWrapper;
 
 #[derive(GodotClass)]
 #[class(no_init, base=RefCounted)]
-pub struct DurationEffect {
+pub struct ExDurationEffect {
     pub base: Base<RefCounted>,
     pub inner: Inner<FixedNameWrapper>,
 }
 
 #[godot_api]
-impl DurationEffect {
+impl ExDurationEffect {
     // Not named 'new' since MonsterConfig.new() in GDScript refers to default.
     #[func]
     fn create(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {

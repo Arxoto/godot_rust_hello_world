@@ -10,13 +10,13 @@ use crate::adapter::fixed_name_wrapper::FixedNameWrapper;
 
 #[derive(GodotClass)]
 #[class(no_init, base=RefCounted)]
-pub struct DynPropDurEffect {
+pub struct ExPropDurEffect {
     pub base: Base<RefCounted>,
     pub inner: Inner<FixedNameWrapper>,
 }
 
 #[godot_api]
-impl DynPropDurEffect {
+impl ExPropDurEffect {
     #[func]
     fn create_inf_max_val(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {

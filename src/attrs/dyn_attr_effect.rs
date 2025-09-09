@@ -10,22 +10,30 @@ use crate::adapter::fixed_name_wrapper::FixedNameWrapper;
 
 #[derive(Debug, GodotClass)]
 #[class(no_init, base=RefCounted)]
-pub struct DynAttrEffect {
+pub struct ExAttrEffect {
     pub base: Base<RefCounted>,
     pub inner: Inner<FixedNameWrapper>,
 }
 
 #[godot_api]
-impl DynAttrEffect {
+impl ExAttrEffect {
     #[func]
-    fn create_inf_basic_add(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create_inf_basic_add(
+        from_name: StringName,
+        effect_name: StringName,
+        value: f64,
+    ) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: Inner::new_basic_add(EffectBuilder::new_infinite(from_name, effect_name, value)),
         })
     }
     #[func]
-    fn create_inf_final_multi(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create_inf_final_multi(
+        from_name: StringName,
+        effect_name: StringName,
+        value: f64,
+    ) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: Inner::new_final_multi(EffectBuilder::new_infinite(

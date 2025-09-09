@@ -10,13 +10,13 @@ use crate::adapter::fixed_name_wrapper::FixedNameWrapper;
 
 #[derive(GodotClass)]
 #[class(no_init, base=RefCounted)]
-pub struct DynPropPeriodEffect {
+pub struct ExPropPeriodEffect {
     pub base: Base<RefCounted>,
     pub inner: Inner<FixedNameWrapper>,
 }
 
 #[godot_api]
-impl DynPropPeriodEffect {
+impl ExPropPeriodEffect {
     #[func]
     fn create_inf_val(
         from_name: StringName,

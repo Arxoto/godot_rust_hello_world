@@ -9,13 +9,13 @@ use crate::adapter::fixed_name_wrapper::FixedNameWrapper;
 
 #[derive(GodotClass)]
 #[class(no_init, base=RefCounted)]
-pub struct DynPropInstEffect {
+pub struct ExPropInstEffect {
     pub base: Base<RefCounted>,
     pub inner: Inner<FixedNameWrapper>,
 }
 
 #[godot_api]
-impl DynPropInstEffect {
+impl ExPropInstEffect {
     #[func]
     fn create_val(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
