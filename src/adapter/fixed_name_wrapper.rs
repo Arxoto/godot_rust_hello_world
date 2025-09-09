@@ -2,7 +2,7 @@ use godot::prelude::*;
 use rust_engine_frame::cores::unify_type::FixedName;
 
 /// same as [`FixedName`]
-#[derive(PartialEq, Hash, Eq, Clone, Debug)]
+#[derive(PartialEq, Hash, Eq, Clone, Debug, Default)]
 pub struct FixedNameWrapper(pub StringName);
 
 impl From<StringName> for FixedNameWrapper {

@@ -7,7 +7,7 @@ use crate::adapter::fixed_name_wrapper::FixedNameWrapper;
 use crate::attrs::dyn_attr_effect::DynAttrEffect;
 
 #[derive(GodotClass)]
-#[class(no_init, base=RefCounted)]
+#[class(init, base=RefCounted)]
 pub struct DynAttr {
     pub base: Base<RefCounted>,
     pub inner: Inner<FixedNameWrapper>,
@@ -16,17 +16,10 @@ pub struct DynAttr {
 #[godot_api]
 impl DynAttr {
     #[func]
-    fn new(v: f64) -> Gd<Self> {
+    fn create(v: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: Inner::new(v),
-        })
-    }
-    #[func]
-    fn new_with_current(v: f64, current: f64) -> Gd<Self> {
-        Gd::from_init_fn(|base| Self {
-            base,
-            inner: Inner::new_with_current(v, current),
         })
     }
 

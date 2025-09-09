@@ -17,15 +17,15 @@ pub struct DynPropInstEffect {
 #[godot_api]
 impl DynPropInstEffect {
     #[func]
-    fn new_cur_val(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create_val(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
-            inner: Inner::new_cur_val(EffectBuilder::new_instant(from_name, effect_name, value)),
+            inner: Inner::new_val(EffectBuilder::new_instant(from_name, effect_name, value)),
         })
     }
 
     #[func]
-    fn new_cur_per(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create_cur_per(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: Inner::new_cur_per(EffectBuilder::new_instant(from_name, effect_name, value)),
@@ -33,10 +33,10 @@ impl DynPropInstEffect {
     }
 
     #[func]
-    fn new_cur_max_per(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create_max_per(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
-            inner: Inner::new_cur_max_per(EffectBuilder::new_instant(
+            inner: Inner::new_max_per(EffectBuilder::new_instant(
                 from_name,
                 effect_name,
                 value,

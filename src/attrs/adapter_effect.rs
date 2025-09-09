@@ -16,13 +16,15 @@ pub struct DurationEffect {
 
 #[godot_api]
 impl DurationEffect {
+    // Not named 'new' since MonsterConfig.new() in GDScript refers to default.
     #[func]
-    fn new(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: EffectBuilder::new_infinite(from_name, effect_name, value),
         })
     }
+
     // =================================================================================
 
     // to copy start =================================================================================

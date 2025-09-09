@@ -18,7 +18,7 @@ pub struct DynPropPeriodEffect {
 #[godot_api]
 impl DynPropPeriodEffect {
     #[func]
-    fn new_inf_cur_val(
+    fn create_inf_val(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -26,14 +26,14 @@ impl DynPropPeriodEffect {
     ) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
-            inner: Inner::new_cur_val(
+            inner: Inner::new_val(
                 EffectBuilder::new_infinite(from_name, effect_name, value),
                 period_time,
             ),
         })
     }
     #[func]
-    fn new_inf_cur_per(
+    fn create_inf_cur_per(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -48,7 +48,7 @@ impl DynPropPeriodEffect {
         })
     }
     #[func]
-    fn new_inf_cur_max_per(
+    fn create_inf_max_per(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -56,14 +56,14 @@ impl DynPropPeriodEffect {
     ) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
-            inner: Inner::new_cur_max_per(
+            inner: Inner::new_max_per(
                 EffectBuilder::new_infinite(from_name, effect_name, value),
                 period_time,
             ),
         })
     }
     #[func]
-    fn new_inf_cur_val_to_val(
+    fn create_inf_cur_val_to_val(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -81,7 +81,7 @@ impl DynPropPeriodEffect {
     }
 
     #[func]
-    fn new_dur_cur_val(
+    fn create_dur_val(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -90,14 +90,14 @@ impl DynPropPeriodEffect {
     ) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
-            inner: Inner::new_cur_val(
+            inner: Inner::new_val(
                 EffectBuilder::new_duration(from_name, effect_name, value, duration_time),
                 period_time,
             ),
         })
     }
     #[func]
-    fn new_dur_cur_per(
+    fn create_dur_cur_per(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -113,7 +113,7 @@ impl DynPropPeriodEffect {
         })
     }
     #[func]
-    fn new_dur_cur_max_per(
+    fn create_dur_max_per(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -122,14 +122,14 @@ impl DynPropPeriodEffect {
     ) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
-            inner: Inner::new_cur_max_per(
+            inner: Inner::new_max_per(
                 EffectBuilder::new_duration(from_name, effect_name, value, duration_time),
                 period_time,
             ),
         })
     }
     #[func]
-    fn new_dur_cur_val_to_val(
+    fn create_dur_cur_val_to_val(
         from_name: StringName,
         effect_name: StringName,
         value: f64,

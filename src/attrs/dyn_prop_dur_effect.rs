@@ -18,7 +18,7 @@ pub struct DynPropDurEffect {
 #[godot_api]
 impl DynPropDurEffect {
     #[func]
-    fn new_inf_max_val(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create_inf_max_val(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: Inner::new_max_val(EffectBuilder::new_infinite(from_name, effect_name, value)),
@@ -26,7 +26,7 @@ impl DynPropDurEffect {
     }
 
     #[func]
-    fn new_inf_max_per(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create_inf_max_per(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: Inner::new_max_per(EffectBuilder::new_infinite(from_name, effect_name, value)),
@@ -34,7 +34,7 @@ impl DynPropDurEffect {
     }
 
     #[func]
-    fn new_inf_min_val(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create_inf_min_val(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: Inner::new_min_val(EffectBuilder::new_infinite(from_name, effect_name, value)),
@@ -42,7 +42,7 @@ impl DynPropDurEffect {
     }
 
     #[func]
-    fn new_dur_max_val(
+    fn create_dur_max_val(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -60,7 +60,7 @@ impl DynPropDurEffect {
     }
 
     #[func]
-    fn new_dur_max_per(
+    fn create_dur_max_per(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -78,7 +78,7 @@ impl DynPropDurEffect {
     }
 
     #[func]
-    fn new_dur_min_val(
+    fn create_dur_min_val(
         from_name: StringName,
         effect_name: StringName,
         value: f64,

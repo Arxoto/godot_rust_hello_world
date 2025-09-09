@@ -9,7 +9,7 @@ use crate::attrs::dyn_prop_inst_effect::DynPropInstEffect;
 use crate::attrs::dyn_prop_period_effect::DynPropPeriodEffect;
 
 #[derive(GodotClass)]
-#[class(no_init, base=RefCounted)]
+#[class(init, base=RefCounted)]
 pub struct DynProp {
     pub base: Base<RefCounted>,
     pub inner: Inner<FixedNameWrapper>,
@@ -18,7 +18,7 @@ pub struct DynProp {
 #[godot_api]
 impl DynProp {
     #[func]
-    fn new(v: f64, the_max: f64, the_min: f64) -> Gd<Self> {
+    fn create(v: f64, the_max: f64, the_min: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: Inner::new(v, the_max, the_min),
@@ -26,10 +26,10 @@ impl DynProp {
     }
 
     #[func]
-    fn new_with_max(v: f64) -> Gd<Self> {
+    fn create_by_max(v: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
-            inner: Inner::new_with_max(v),
+            inner: Inner::new_by_max(v),
         })
     }
 

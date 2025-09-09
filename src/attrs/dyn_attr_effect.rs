@@ -18,14 +18,14 @@ pub struct DynAttrEffect {
 #[godot_api]
 impl DynAttrEffect {
     #[func]
-    fn new_inf_basic_add(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create_inf_basic_add(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: Inner::new_basic_add(EffectBuilder::new_infinite(from_name, effect_name, value)),
         })
     }
     #[func]
-    fn new_inf_final_multi(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
+    fn create_inf_final_multi(from_name: StringName, effect_name: StringName, value: f64) -> Gd<Self> {
         Gd::from_init_fn(|base| Self {
             base,
             inner: Inner::new_final_multi(EffectBuilder::new_infinite(
@@ -36,7 +36,7 @@ impl DynAttrEffect {
         })
     }
     #[func]
-    fn new_inf_basic_percent(
+    fn create_inf_basic_percent(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -51,7 +51,7 @@ impl DynAttrEffect {
         })
     }
     #[func]
-    fn new_inf_final_percent(
+    fn create_inf_final_percent(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -67,7 +67,7 @@ impl DynAttrEffect {
     }
 
     #[func]
-    fn new_dur_basic_add(
+    fn create_dur_basic_add(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -84,7 +84,7 @@ impl DynAttrEffect {
         })
     }
     #[func]
-    fn new_dur_final_multi(
+    fn create_dur_final_multi(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -101,7 +101,7 @@ impl DynAttrEffect {
         })
     }
     #[func]
-    fn new_dur_basic_percent(
+    fn create_dur_basic_percent(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
@@ -118,7 +118,7 @@ impl DynAttrEffect {
         })
     }
     #[func]
-    fn new_dur_final_percent(
+    fn create_dur_final_percent(
         from_name: StringName,
         effect_name: StringName,
         value: f64,
