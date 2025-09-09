@@ -6,7 +6,7 @@
 use godot::prelude::*;
 
 mod adapter;
-mod effects;
+
 mod attrs;
 
 struct AbilitySystemComponent;

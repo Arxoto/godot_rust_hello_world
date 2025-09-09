@@ -2,8 +2,8 @@ use godot::prelude::*;
 use rust_engine_frame::cores::unify_type::FixedName;
 
 /// same as [`FixedName`]
-#[derive(PartialEq, Hash, Eq, Clone)]
-pub struct FixedNameWrapper(StringName);
+#[derive(PartialEq, Hash, Eq, Clone, Debug)]
+pub struct FixedNameWrapper(pub StringName);
 
 impl From<StringName> for FixedNameWrapper {
     fn from(value: StringName) -> Self {
