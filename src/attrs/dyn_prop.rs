@@ -51,7 +51,8 @@ impl ExProp {
 
     #[func]
     pub fn use_inst_effect(&mut self, e: Gd<ExPropInstEffect>) -> f64 {
-        self.inner.use_inst_effect(e.bind().inner.clone())
+        let alter_result = self.inner.use_inst_effect(e.bind().inner.clone());
+        alter_result.delta
     }
 
     #[func]

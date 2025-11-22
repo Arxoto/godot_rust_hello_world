@@ -4,8 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-godot = "0.3.5"
+godot = "0.4.2"
 rust_engine_frame = { path = "../rust_engine_frame" }
 
 [lib]
 crate-type = ["cdylib"]  # Compile this crate to a dynamic C library.
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

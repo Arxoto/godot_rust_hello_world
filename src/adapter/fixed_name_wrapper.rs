@@ -1,5 +1,5 @@
 use godot::prelude::*;
-use rust_engine_frame::cores::unify_type::FixedName;
+use rust_engine_frame::cores::unify_type::{FixedName, FixedString};
 
 /// same as [`FixedName`]
 #[derive(PartialEq, Hash, Eq, Clone, Debug, Default)]
@@ -18,3 +18,21 @@ impl Into<StringName> for &FixedNameWrapper {
 }
 
 impl FixedName for FixedNameWrapper {}
+
+/// same as [`FixedString`]
+#[derive(PartialEq, Hash, Eq, Clone, Debug, Default)]
+pub struct FixedStringWrapper(pub GString);
+
+impl From<GString> for FixedStringWrapper {
+    fn from(value: GString) -> Self {
+        FixedStringWrapper(value)
+    }
+}
+
+impl Into<GString> for &FixedStringWrapper {
+    fn into(self) -> GString {
+        self.0.clone()
+    }
+}
+
+impl FixedString for FixedStringWrapper {}
